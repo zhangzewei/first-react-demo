@@ -54,7 +54,18 @@ import LikeButton from 'js/anotherAPP/filterBar';
       );
     }
   });
-
+  var NoLink = React.createClass({
+    getInitialState: function() {
+      return {message: 'Hello!'};
+    },
+    handleChange: function(event) {
+      this.setState({message: event.target.value});
+    },
+    render: function() {
+      var message = this.state.message;
+      return <input type="text" value={message} onChange={this.handleChange} />;
+    }
+  });
   var CommentBox = React.createClass({
     handleCommentSubmit: function(comment) {
       var comments = this.state.data;
@@ -76,6 +87,7 @@ import LikeButton from 'js/anotherAPP/filterBar';
       return (
         <div className="commentBox">
           <h1>Comments</h1>
+          <NoLink />
           <CommentList data={this.state.data} />
           <CommentForm onCommentSubmit={this.handleCommentSubmit} />
         </div>

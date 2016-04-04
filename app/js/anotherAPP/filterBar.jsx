@@ -17,5 +17,4 @@ var LikeButton = React.createClass({
   }
 });
 
-
 module.exports = LikeButton;
