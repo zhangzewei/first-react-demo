@@ -1,5 +1,5 @@
 import React from 'react';
-import LikeButton from 'js/anotherAPP/filterBar'
+import LikeButton from 'js/anotherAPP/filterBar';
   var Comment = React.createClass({
     render: function() {
       return (
