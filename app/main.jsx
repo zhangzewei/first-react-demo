@@ -1,5 +1,5 @@
 import React from 'react';
-console.log(React);
+import LikeButton from 'js/anotherAPP/filterBar'
   var Comment = React.createClass({
     render: function() {
       return (
@@ -39,6 +39,7 @@ console.log(React);
         return;
       }
       // TODO: send request to the server
+      this.props.onCommentSubmit({author: author, text: text});
       this.refs.author.value = '';
       this.refs.text.value = '';
       return;
@@ -55,6 +56,11 @@ console.log(React);
   });
 
   var CommentBox = React.createClass({
+    handleCommentSubmit: function(comment) {
+      var comments = this.state.data;
+      var newComments = comments.concat([comment]);
+      this.setState({data: newComments});
+    },
     getInitialState: function() {
       return {data: []};
     },
@@ -70,8 +76,8 @@ console.log(React);
       return (
         <div className="commentBox">
           <h1>Comments</h1>
-          <CommentList  data={this.state.data} />
-          <CommentForm />
+          <CommentList data={this.state.data} />
+          <CommentForm onCommentSubmit={this.handleCommentSubmit} />
         </div>
       );
     }
@@ -79,4 +85,8 @@ console.log(React);
   React.render(
     <CommentBox />,
     document.getElementById('comment')
+  );
+  React.render(
+    <LikeButton />,
+    document.getElementById('filter-bar')
   );
